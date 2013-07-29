@@ -98,6 +98,33 @@ describe FastSpring::Subscription do
     end
   end
 
+  context '#subscriptions_url' do
+    it 'returns url for detail type' do
+      FastSpring::Subscription.subscription_url(:detail, product: 'tnt').should == "http://sites.fastspring.com/acme/product/tnt"
+      FastSpring::Subscription.subscription_url(:detail, product: 'tnt', referrer: 'acme_co').should == "http://sites.fastspring.com/acme/product/tnt?referrer=acme_co"
+    end
+    it 'returns url for order type' do
+      FastSpring::Subscription.subscription_url(:order, product: 'tnt').should == "http://sites.fastspring.com/acme/product/tnt?action=order"
+      FastSpring::Subscription.subscription_url(:order, product: 'tnt', referrer: 'acme_co').should == "http://sites.fastspring.com/acme/product/tnt?action=order&referrer=acme_co"
+    end
+    it 'returns url for instant type' do
+      FastSpring::Subscription.subscription_url(:instant, product: 'tnt').should == "https://sites.fastspring.com/acme/instant/tnt?contact_fname=+&contact_lname=+"
+      FastSpring::Subscription.subscription_url(:instant, product: 'tnt', referrer: 'acme_co', tags: 'tag1=10,tag2,tag3=30', contact_company: 'ABC Company', contact_phone: '123-4567890', contact_email: 'john+smith@abccompany.com', contact_fname: 'John').should == "https://sites.fastspring.com/acme/instant/tnt?contact_company=ABC+Company&contact_email=john%2Bsmith%40abccompany.com&contact_fname=John&contact_lname=+&contact_phone=123-4567890&referrer=acme_co&tags=tag1%3D10%2Ctag2%2Ctag3%3D30"
+      FastSpring::Subscription.subscription_url(:instant, product: 'tnt', referrer: 'acme_co').should == "https://sites.fastspring.com/acme/instant/tnt?contact_fname=+&contact_lname=+&referrer=acme_co"
+    end
+    it 'returns url for add type' do
+      FastSpring::Subscription.subscription_url(:add, product: 'tnt').should == "http://sites.fastspring.com/acme/product/tnt?action=add"
+      FastSpring::Subscription.subscription_url(:add, product: 'tnt', referrer: 'acme_co').should == "http://sites.fastspring.com/acme/product/tnt?action=add&referrer=acme_co"
+    end
+    it 'returns url for adds type' do
+      FastSpring::Subscription.subscription_url(:adds, product: 'tnt').should == "http://sites.fastspring.com/acme/product/tnt?action=adds"
+      FastSpring::Subscription.subscription_url(:adds, product: 'tnt', referrer: 'acme_co').should == "http://sites.fastspring.com/acme/product/tnt?action=adds&referrer=acme_co"
+    end
+    it 'returns url for api type' do
+      FastSpring::Subscription.subscription_url(:api).should == 'http://sites.fastspring.com/acme/api/order'
+    end
+  end
+
   context 'renew' do
     subject { FastSpring::Subscription.find('test_ref') }
     before do

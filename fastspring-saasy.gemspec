@@ -83,5 +83,9 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<ruby-debug19>, [">= 0"])
     s.add_dependency(%q<httparty>, ["~> 0.8.1"])
   end
+
+  s.add_dependency('activesupport', '~> 3.0')
+
 end
+
 
