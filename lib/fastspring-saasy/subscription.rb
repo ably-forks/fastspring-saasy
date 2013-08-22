@@ -120,6 +120,19 @@ module FastSpring
       self.class.post(renew_path, :basic_auth => @auth)
     end
 
+    # Update subscription
+    def update_attributes(attributes)
+      self.class.put(base_subscription_path,
+                     headers: { 'Content-Type' => 'application/xml' },
+                     body: attributes.to_xml(root: 'subscription'),
+                     basic_auth: @auth)
+    end
+
+    def self.update_subscription(reference, attributes)
+      sub = Subscription.new(reference)
+      sub.update_attributes(attributes)
+    end
+
     private
 
     def parsed_response

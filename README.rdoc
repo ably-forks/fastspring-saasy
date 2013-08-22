@@ -50,6 +50,13 @@ Flexible subscriptions url
   
   FastSpring::Subscription.subscription_url(:instant, product: 'test_product', referrer: 'new_co', tags: 'tag1=10,tag2,tag3=30', contact_company: 'ABC Company', contact_phone: '123-4567890', contact_email: 'john+smith@abccompany.com', contact_fname: 'John', contact_lname: 'Smith')
 
+
+Update subscriptions
+  sub = FastSpring::Subscription.find('reference')
+  sub.update_attributes(tags: 'tag1=10,tag2,tag3=30', company: 'ABC Company')
+
+  FastSpring::Subscription.update_subscription('reference', tags: 'tag1=10,tag2,tag3=30', company: 'ABC Company')
+
 Orders
   order = FastSpring::Order.find('reference')
   order.items.each do |item|

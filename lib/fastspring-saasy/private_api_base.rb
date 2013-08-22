@@ -1,7 +1,7 @@
 module FastSpring
   class PrivateApiBase
     include HTTParty
-    base_uri "https://api.fastspring.com"
+    base_uri API_URL
     format :xml
     #debug_output
 
