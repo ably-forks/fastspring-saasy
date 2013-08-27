@@ -22,7 +22,7 @@ module FastSpring
         when :detail
           product = options.delete(:product)
           # TODO: throw error if no product
-          query = options.to_param
+          query = self.filtered_options(options).to_param
           "#{SITE_URL}/#{self.company_id}/product/#{product}#{query.empty? ? '' : "?#{query}"}"
 
         when :order, :add, :adds
@@ -31,7 +31,7 @@ module FastSpring
         when :instant
           product = options.delete(:product)
           # TODO: throw error if no product
-          query = {contact_fname: ' ', contact_lname: ' '}.merge(options).to_param
+          query = {contact_fname: ' ', contact_lname: ' '}.merge(self.filtered_options(options)).to_param
           "#{SSL_SITE_URL}/#{self.company_id}/instant/#{product}?#{query}"
 
         when :api
@@ -131,6 +131,12 @@ module FastSpring
     def self.update_subscription(reference, attributes)
       sub = Subscription.new(reference)
       sub.update_attributes(attributes)
+    end
+
+    protected
+
+    def self.filtered_options(options)
+      options.delete_if{|k, v| v.nil? || (v.respond_to?(:empty?) && v.empty?)}
     end
 
     private

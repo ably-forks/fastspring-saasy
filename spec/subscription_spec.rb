@@ -123,6 +123,12 @@ describe FastSpring::Subscription do
     it 'returns url for api type' do
       FastSpring::Subscription.subscription_url(:api).should == 'http://sites.fastspring.com/acme/api/order'
     end
+    it 'returns url for instant type with empty values' do
+      FastSpring::Subscription.subscription_url(:instant, product: 'tnt', referrer: 'acme_co', tags: nil, contact_company: '', contact_phone: 1234567890, contact_email: 'john+smith@abccompany.com', contact_fname: 'John').should == "https://sites.fastspring.com/acme/instant/tnt?contact_email=john%2Bsmith%40abccompany.com&contact_fname=John&contact_lname=+&contact_phone=1234567890&referrer=acme_co"
+    end
+    it 'returns url for detail type with empty values' do
+      FastSpring::Subscription.subscription_url(:detail, product: 'tnt', referrer: '').should == "http://sites.fastspring.com/acme/product/tnt"
+    end
   end
 
   context 'renew' do
