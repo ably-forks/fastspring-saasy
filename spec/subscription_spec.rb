@@ -129,6 +129,16 @@ describe FastSpring::Subscription do
     it 'returns url for detail type with empty values' do
       FastSpring::Subscription.subscription_url(:detail, product: 'tnt', referrer: '').should == "http://sites.fastspring.com/acme/product/tnt"
     end
+    it 'raise error when product is missing for instant' do
+      expect {
+        FastSpring::Subscription.subscription_url(:instant, referrer: 'acme_co', contact_company: 'ABC Company')
+      }.to raise_error(ArgumentError)
+    end
+    it 'raise error when product is missing for detail' do
+      expect {
+        FastSpring::Subscription.subscription_url(:detail, referrer: 'acme_co')
+      }.to raise_error(ArgumentError)
+    end
   end
 
   context 'renew' do
