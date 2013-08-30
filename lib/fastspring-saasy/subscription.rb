@@ -142,7 +142,7 @@ module FastSpring
     private
 
     def parsed_response
-      @response.parsed_response['subscription']
+      @response.parsed_response['subscription'] if @response
     end
 
   end

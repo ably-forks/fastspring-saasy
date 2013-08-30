@@ -49,7 +49,7 @@ Flexible subscriptions url
   => http://sites.fastspring.com/acme/api/order
   
   FastSpring::Subscription.subscription_url(:instant, product: 'test_product', referrer: 'new_co', tags: 'tag1=10,tag2,tag3=30', contact_company: 'ABC Company', contact_phone: '123-4567890', contact_email: 'john+smith@abccompany.com', contact_fname: 'John', contact_lname: 'Smith')
-
+  => https://sites.fastspring.com/acme/instant/test_product?contact_company=ABC+Company&contact_email=john%2Bsmith%40abccompany.com&contact_fname=John&contact_lname=Smith&contact_phone=123-4567890&referrer=new_co&tags=tag1%3D10%2Ctag2%2Ctag3%3D30
 
 Update subscriptions
   sub = FastSpring::Subscription.find('reference')

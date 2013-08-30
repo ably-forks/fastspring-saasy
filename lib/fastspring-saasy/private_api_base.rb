@@ -2,7 +2,6 @@ module FastSpring
   class PrivateApiBase
     include HTTParty
     base_uri API_URL
-    format :xml
     #debug_output
 
     attr_reader :customer
@@ -56,7 +55,7 @@ module FastSpring
 
     private
     def value_for(attribute)
-      parsed_response.fetch(attribute)
+      parsed_response.fetch(attribute) if parsed_response
     end
   end
 end

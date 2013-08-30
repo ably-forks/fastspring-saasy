@@ -152,4 +152,6 @@ describe FastSpring::Subscription do
       subject.renew_path.should == "/company/acme/subscription/test_ref/renew"
     end
   end
+
+  #TODO: add test for FastSpring::Subscription.find not found
 end
