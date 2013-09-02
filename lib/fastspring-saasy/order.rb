@@ -24,7 +24,7 @@ module FastSpring
 
     # Return the order reference
     def reference
-      value_for('reference')
+      value_for('reference') || @reference
     end
 
     # Was the order a test?
@@ -65,10 +65,14 @@ module FastSpring
       @address ||= Address.new(value_for('address'))
     end
 
+    def invoice_url
+      "#{SSL_SITE_URL}/#{@company}/order/invoice/#{reference}"
+    end
+
     private
 
     def parsed_response
-      @response.parsed_response['order']
+      @response.parsed_response['order'] if @response && @response.parsed_response
     end
 
   end

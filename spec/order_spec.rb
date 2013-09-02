@@ -20,6 +20,10 @@ describe FastSpring::Order do
     it 'returns the path for the company and reference' do
       subject.base_order_path.should == "/company/acme/order/test_ref"
     end
+
+    it 'returns invoice url' do
+      subject.invoice_url.should eq 'https://sites.fastspring.com/acme/order/invoice/test_ref'
+    end
   end
 
   context 'order details' do
@@ -88,6 +92,10 @@ describe FastSpring::Order do
 
     it 'returns the address' do
       subject.address.should == address
+    end
+
+    it 'returns invoice url' do
+      subject.invoice_url.should eq 'https://sites.fastspring.com/acme/order/invoice/TEST-0RD3R'
     end
 
     context 'items' do
