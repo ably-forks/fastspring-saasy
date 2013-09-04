@@ -8,6 +8,8 @@ module FastSpring
   API_URL = 'https://api.fastspring.com'
 end
 
+require_relative 'fastspring-saasy/response_wrapper'
+
 require_relative 'fastspring-saasy/private_api_base'
 require_relative 'fastspring-saasy/account'
 require_relative 'fastspring-saasy/subscription'

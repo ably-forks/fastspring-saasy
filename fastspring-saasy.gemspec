@@ -38,6 +38,7 @@ Gem::Specification.new do |s|
     "lib/fastspring-saasy/payment.rb",
     "lib/fastspring-saasy/private_api_base.rb",
     "lib/fastspring-saasy/public_api_base.rb",
+    "lib/fastspring-saasy/response_wrapper.rb",
     "lib/fastspring-saasy/subscription.rb",
     "lib/httparty/txt_parser.rb",
     "spec/account_spec.rb",

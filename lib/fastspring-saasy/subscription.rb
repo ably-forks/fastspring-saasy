@@ -117,15 +117,16 @@ module FastSpring
 
     # Renew the subscription
     def renew
-      self.class.post(renew_path, :basic_auth => @auth)
+      ResponseWrapper.new(self.class.post(renew_path, :basic_auth => @auth))
     end
 
     # Update subscription
     def update_attributes(attributes)
-      self.class.put(base_subscription_path,
-                     headers: { 'Content-Type' => 'application/xml' },
-                     body: attributes.to_xml(root: 'subscription'),
-                     basic_auth: @auth)
+      res = self.class.put(base_subscription_path,
+                           headers: { 'Content-Type' => 'application/xml' },
+                           body: attributes.to_xml(root: 'subscription'),
+                           basic_auth: @auth)
+      ResponseWrapper.new(res)
     end
 
     def self.update_subscription(reference, attributes)
