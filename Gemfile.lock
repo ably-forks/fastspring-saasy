@@ -23,15 +23,13 @@ GEM
       git (>= 1.2.5)
       rake
       rdoc
-    json (1.7.6)
     linecache19 (0.5.12)
       ruby_core_source (>= 0.1.4)
     minitest (4.7.5)
     multi_json (1.5.0)
     multi_xml (0.5.2)
     rake (10.0.3)
-    rdoc (3.12)
-      json (~> 1.4)
+    rdoc (6.3.0)
     rspec (2.12.0)
       rspec-core (~> 2.12.0)
       rspec-expectations (~> 2.12.0)
